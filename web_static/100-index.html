@@ -1,338 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>AirBnB clone</title>
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/4-common.css">
-    <link rel="stylesheet" href="styles/3-header.css">
-    <link rel="stylesheet" href="styles/3-footer.css">
-    <link rel="stylesheet" href="styles/6-filters.css">
-    <link rel="stylesheet" href="styles/100-places.css">
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-          crossorigin="anonymous">
-    <link rel="icon" href="images/icon.png">
-  </head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="Ian Liu-Johnston">
 
-  <body>
-    <header></header>
+		<title>HTML Exercises</title>
 
-    <div class="container">
-      <section class="filters">
-        <div class="locations">
-          <h3>States</h3>
-          <h4>ie. New York/Virgina...</h4>
-          <div class="popover">
-            <h2>New York:</h2>
-            <ul>
-              <li>Buffalo</li>
-              <li>New York City</li>
-            </ul>
-            <h2>Virginia:</h2>
-            <ul>
-              <li>Charlottesville</li>
-              <li>Richmond</li>
-            </ul>
-          </div>
-
-        </div><div class="amenities">
-          <h3>Amenities</h3>
-          <h4>ie. Laundry/Internet...</h4>
-          <ul class="popover">
-            <li>Internet</li>
-            <li>TV</li>
-            <li>Kitchen</li>
-            <li>Iron</li>
-          </ul>
-        </div>
-        <button>Search</button>
-      </section>
-
-      <section class="places">
-        <h1>Places</h1>
-        <article>
-          <div class="name_and_price">
-            <h2>Pillow Fort</h2>
-            <div class="price_by_night">&#36;7</div>
-          </div>
-
-          <div class="information">
-            <div class="max_guest">
-              <i class="fa fa-users fa-3x" aria-hidden="true"></i>
-              <br>2 Guests
-            </div>
-            <div class="number_rooms">
-              <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
-              <br>1 Room
-            </div>
-            <div class="number_bathrooms">
-              <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
-              <br>0 Bathrooms
-            </div>
-          </div>
-
-          <div class="user">
-            <strong>Owner:</strong> My 4-year-old son
-          </div>
-
-          <div class="description">
-            Cramped yet...(cute? pre-school-ey? nvm.), one-bedroom pillow fort
-            constructed by my, er, creative, 4-year-old son. Features hand-me-down
-            blanket beds. Being a pillow fort, it has no electricy, plumbing,
-            internet, or essentially any amenities whatsoever. But, at least
-            it has a nice aroma of dino chicken nuggets? Hey, it's cheap!!
-          </div>
-
-          <div class="amenities">
-            <h2>Amenities</h2>
-            <ul>
-              <li><p>None</p></li>
-            </ul>
-          </div>
-
-          <div class="reviews">
-            <h2>2 Reviews</h2>
-              <h3>From Jane the February 26 2017</h3>
-              <ul>
-                <li>
-                  <p>
-                    Cute is absolutely the correct adjective for this joy of a
-                    stay. Five stars!!
-                  </p>
-                </li>
-              </ul>
-              <h3>From Alexis the June 1 2018</h3>
-              <ul>
-                <li>
-                  <p>
-                    Omg I just love the smell of dino chicken nuggets. Reminds me
-                    of my childhood. Def will return!
-                  </p>
-                </li>
-              </ul>
-            </div>
-        </article>
-
-        <article>
-          <div class="name_and_price">
-            <h2>Fraternity House Couch</h2>
-            <div class="price_by_night">&#36;44</div>
-          </div>
-
-          <div class="information">
-            <div class="max_guest">
-              <i class="fa fa-users fa-3x" aria-hidden="true"></i>
-              <br>1 Guest
-            </div>
-            <div class="number_rooms">
-              <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
-              <br>1 Room
-            </div>
-            <div class="number_bathrooms">
-              <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
-              <br>2 Bathrooms
-            </div>
-          </div>
-
-          <div class="user"><strong>Owner:</strong> Theta Beta Bois</div>
-          <div class="description">
-            So, we've got this old couch that's currently going unused in our
-            frat house (Theta Beta Bois boiiiii!) We know trying to find school
-            housing sucks, right? So, like, we thought, you know what would be
-            a good idea? We should offer our couch for a student in need! Join
-            us bro, we're the chillest bros around, and you know we throw the
-            littest Friday night bangers!
-          </div>
-
-          <div class="amenities">
-            <h2>Amenities</h2>
-            <ul>
-              <li>
-                <i class="fa fa-gamepad" aria-hidden="true"></i>
-                <p>Video games</p>
-              </li>
-              <li>
-                <i class="fa fa-shower" aria-hidden="true"></i>
-                <p>Shower</p>
-              </li>
-              <li>
-                <i class="fa fa-fire" aria-hidden="true"></i>
-                <p>Litness</p>
-              </li>
-            </ul>
-          </div>
-
-          <div class="reviews">
-            <h2>2 Reviews</h2>
-            <h3>From Jonny the June 18 2017</h3>
-            <ul>
-              <li>
-                <p>
-                  Had the dankest stay here, thanks bois!
-                </p>
-              </li>
-            </ul>
-            <h3>From Carson the April 22 2018</h3>
-            <ul>
-              <li>
-                <p>
-                  You bros know what I'm talking about. You know. Stay lit.
-                </p>
-              </li>
-            </ul>
-          </div>
-        </article>
-
-        <article>
-          <div class="name_and_price">
-            <h2>Are You My Soul Mate?</h2>
-            <div class="price_by_night">&#36;0</div>
-          </div>
-
-          <div class="information">
-            <div class="max_guest">
-              <i class="fa fa-users fa-3x" aria-hidden="true"></i>
-              <br>1 Guest
-            </div>
-            <div class="number_rooms">
-              <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
-              <br>4 Rooms
-            </div>
-            <div class="number_bathrooms">
-              <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
-              <br>1 Bathrooms
-            </div>
-          </div>
-
-          <div class="user">
-            <strong>Owner:</strong> Avocado &#38; Alpaca Spiritualist
-          </div>
-
-          <div class="description">
-            Hi there. You're reading this right now, yes? I can sense it. Now,
-            are you my soul mate? If so, I await you. Yes, you, you fellow
-            spiritualist. You, who dedicates each morning carefully tending your
-            backyard grove of avocado trees. You, who cannot spend one day away
-            from the presence of your family of 17 alpacas. You know who you
-            are. Unite with me. Unite with my spirit. I have two boiled eggs
-            waiting for you.
-          </div>
-
-          <div class="amenities">
-            <h2>Amenities</h2>
-            <ul>
-              <li>
-                <i class="fa fa-heart" aria-hidden="true"></i>
-                <p>Love</p>
-              </li>
-            </ul>
-          </div>
-
-          <div class="reviews">
-            <h2>3 Reviews</h2>
-            <h3>From Michel the January 2 2018</h3>
-            <ul>
-              <li>
-                <p>
-                  My love. It is me. I'm coming.
-                </p>
-              </li>
-            </ul>
-            <h3>From Jean the March 23 2018</h3>
-            <ul>
-              <li>
-                <p>
-                  You had me at "Hi there." And then you went and said you
-                  prepared two boiled eggs.
-                </p>
-              </li>
-            </ul>
-            <h3>From Peter the May 1 2018</h3>
-            <ul>
-              <li>
-                <p>
-                  I thought I would never find you, yet here I am, fresh
-                  from tending to my avocado trees, feeling as I've never
-                  felt before in my life.
-                </p>
-              </li>
-            </ul>
-          </div>
-        </article>
-
-        <article>
-          <div class="name_and_price">
-            <h2>Normal, Regular House</h2>
-            <div class="price_by_night">&#36;75</div>
-          </div>
-
-          <div class="information">
-            <div class="max_guest">
-              <i class="fa fa-users fa-3x" aria-hidden="true"></i>
-              <br>4 Guests
-            </div>
-            <div class="number_rooms">
-              <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
-              <br>5 Rooms
-            </div>
-            <div class="number_bathrooms">
-              <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
-              <br>3 Bathrooms
-            </div>
-          </div>
-
-          <div class="user">
-            <strong>Owner:</strong> Triss</div>
-          <div class="description">
-            Standard, non-occupied, five-bed, three-bath house in a quiet
-            neighborhood. Based on all the other options on this site, I
-            shouldn't need to say anything else at all.
-          </div>
-
-          <div class="amenities">
-            <h2>Amenities</h2>
-            <ul>
-              <li>
-                <i class="fa fa-wifi" aria-hidden="true"></i>
-                <p>Wifi</p>
-              </li>
-              <li>
-                <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
-                <p>Air conditioning</p>
-              </li>
-              <li>
-                <i class="fa fa-paw" aria-hidden="true"></i>
-                <p>Pet friendly</p>
-              </li>
-              <li>
-                <i class="fa fa-print" aria-hidden="true"></i>
-                <p>Printer</p>
-              </li>
-              <li>
-                <i class="fa fa-coffee" aria-hidden="true"></i>
-                <p>Coffee machine</p>
-              </li>
-            </ul>
-          </div>
-
-          <div class="reviews">
-            <h2>1 Review</h2>
-            <h3>From Marty the December 12 2018</h3>
-            <ul>
-              <li>
-                <p>Eh, it was okay.</p>
-              </li>
-            </ul>
-          </div>
-        </article>
-
-      </section>
-    </div>
-
-    <footer>
-      Holberton School
-    </footer>
-  </body>
+		<link rel="stylesheet" href="styles/4-common.css">
+		<link rel="stylesheet" href="styles/3-header.css">
+		<link rel="stylesheet" href="styles/3-footer.css">
+		<link rel="stylesheet" href="styles/6-filters.css">
+		<link rel="stylesheet" href="styles/100-places.css">
+		<link rel="icon" href="images/icon.png">
+	</head>
+	<body>
+		<header>
+		</header>
+		<div class="container">
+			<section class="filters">
+				<div class="locations">
+					<h3>States</h3>
+					<h4><em>may refer to</em></h4>
+					<div class="popover">
+						<ul>
+							<ul><h2>Constituant</h2>
+								<li>California</li>
+								<li>New York</li>
+								<li>Arizona</li>
+								<li>Washington</li>
+								<li>New Mexico</li>
+							</ul>
+							<ul><h2>Mental</h2>
+								<li>Enviggorated</li>	
+								<li>Psychotic</li>	
+								<li>Elated</li>	
+								<li>Reclusive</li>	
+								<li>Aggravated</li>	
+								<li>Altered</li>
+							</ul>
+							<ul><h2>Quantum</h2>
+								<li>Mixed</li>
+								<li>Pure</li>
+								<li>Coherent</li>
+								<li>Vacuum</li>
+								<li>Superposition</li>
+								<li>Entangled</li>
+							</ul>
+						</ul>	
+					</div>
+				</div>
+				<div class="amenities">
+					<h3>Amenities</h3>
+					<h4><em>My spoon is too big.</em></h4>
+					<div class="popover">
+						<ul>
+							<li>Wifi</li>
+							<li>Stove</li>
+							<li>Cereal</li>
+							<li>Low Crime Rate</li>
+							<li>Television</li>
+							<li>Marbles</li>
+							<li>Clean Air</li>
+							<li>Pet Friendly</li>
+							<li>Handcuffs</li>
+							<li>High Crime Rates</li>
+							<li>Necronomicon Access</li>
+							<li>Paper</li>
+							<li>Hot Tub</li>
+						</ul>
+					</div>
+				</div>
+				<button>Search</button>
+			</section>
+			<section class="places">
+				<h1>Places</h1>
+				<article>
+					<h2>Foil-Covered Yurt</h2>
+					<div class="price_by_night">
+						<h3>$5</h3>
+					</div>
+					<div class="information">
+						<div class="max_guest">
+							<p>1-2 Guests</p>
+						</div>
+						<div class="number_rooms">
+							<p>1 Room</p>
+						</div>
+						<div class="number_bathrooms">
+							<p>N/A</p>
+						</div>
+					</div>
+					<div class="user">
+						<p><strong>Owner</strong>: Bob</p>
+					</div>
+					<div class="description">
+						<p>I made this yurt out of Styro-foam bout ten yers ago.The door's been freshly taped back with some duck tape so no more midnite chills. it's in my backyard and my dog's real friendly, so don't be suprised if you wake up and he's sleepng in your bed for warmth
+					</div>
+					<div class="amenities">
+						<ul><h2>Amenities</h2>
+							<li class="icon_stove">BBQ</li>
+							<li class="icon_pets">Pet Friendly</li>
+							<li class="icon_low_crime">Low Crime Rates</li>
+						</ul>
+					</div>
+					<div class="reviews">
+						<h2>Reviews</h2>
+						<ul>
+							<li><h3>g1raffe_102</h3>
+								<h6>September 1, 2016</h6>
+								<p>It's actually better than it sounds.</p>
+							</li>
+							<li><h3>thanks_from_jerry_garcia</h3>
+								<h6>December 8, 2016</h6>
+								<p>Owner is very nice. Lots of good weed. BBQ was very convienent.</p>
+							</li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<h2>Historic Houseboat</h2>
+					<div class="price_by_night">
+						<h3>$149.99</h3>
+					</div>
+					<div class="information">
+						<div class="max_guest">
+							<p>500 Guests</p>
+						</div>
+						<div class="number_rooms">
+							<p>75 Rooms</p>
+						</div>
+						<div class="number_bathrooms">
+							<p>Everywhere</p>
+						</div>
+					</div>
+					<div class="user">
+						<p><strong>Owner</strong>: Cthulhu, Destroyer of Worlds</p>
+					</div>
+					<div class="description">
+						<p>This sunken battleship used to belong the the Turkish Navy in the 11th Century AD. It is located in the scenic Mariana Trench where guests enjoy many furlongs of crushing water. The pristine view from the portside hull is one of the best in the ocean. Ample floatsam drifts from the upper depths, so opportunities for souvenirs from the surface are practically boundless.</p>
+					</div>
+					<div class="amenities">
+						<ul><h2>Amenities</h2>
+							<li class="icon_wifi">Wifi</li>
+							<li class="icon_tv">Television</li>
+							<li class="icon_pets">Pet Friendly</li>
+							<li class="icon_hottub">Hot Tub</li>
+							<li class="necronom-icon">Necronomicon Access</li>
+						</ul>
+					</div>
+					<div class="reviews">
+						<h2>Reviews</h2>
+						<ul>
+							<li><h3>Specifishity1409</h3>
+								<h6>on October 25, 2015</h6>
+								<p>My family of several thousand came to visit, and barely lost one hundred to predators. Though a little pricy, it was very luxurious, with lots of opportunities to feed. The history was almost as interesting as the souviners!</p>
+							</li>
+							<li><h3>1nv1s1bl3c4m0f74g3</h3>
+								<h6>on December 17, 2016</h6>
+								<p>This is my favorite spot along the whole trench. All cephalopods get in here free too!</p>
+							</li>
+							<li><h3>YOG</h3>
+								<h6>on December 17, 2016</h6>
+								<p>Why do cephalopods get in here free while everyone else has to pay out the ass?</p>
+							</li>
+							<li><h3>MrsBlurings</h3>
+								<h6>on December 18, 2016</h6>
+								<p>@1nv1s1bl3c4m0f74g3 Seconded! This is an amazing spot. @YOG Didn't you know all cephalopods are the children of Cthulhu, the owner, or are you just willfully ignorant?</p>
+							</li>
+							<li><h3>Randolf_Carter</h3>
+								<h6>on February 6, 2017</h6>
+								<p>DO NOT GO HERE! This is a front for awakening the ancient one.</p>
+							</li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<h2>Basement Suite</h2>
+					<div class="price_by_night">
+						<h3>$79.99</h3>
+					</div>
+					<div class="information">
+						<div class="max_guest">
+							<p>5 Guests</p>
+						</div>
+						<div class="number_rooms">
+							<p>1 Room</p>
+						</div>
+						<div class="number_bathrooms">
+							<p>1 Bathroom</p>
+						</div>
+					</div>
+					<div class="user">
+						<p><strong>Owner</strong>: Cthulhu, Destroyer of Worlds</p>
+					</div>
+					<div class="description">
+						<p>You need to be locked up somewhere to think about what you've done. Why not spend it with a fellow convict? We have all the amenities you need here: rats to eat, other prisoners to fight with for scraps of bread, lots of moist moss to suck moisture from, chains to rattle and space to reflect on what you've done.</p>
+					</div>
+					<div class="amenities">
+						<ul><h2>Amenities</h2>
+							<li class="icon_handcuffs">Complementry Handcuffs</li>
+							<li class="icon_high_crime">High Crime Rates</li>
+							<li class="necronom-icon">Necronomicon Access</li>
+						</ul>
+					</div>
+					<div class="reviews">
+						<h2>Reviews</h2>
+						<ul>
+							<li><h3>Jack10121888</h3>
+								<h6>on August 31, 2015</h6>
+								<p>One absolutely does not visit here for women. I was sorely disappointed by the lack of feminine charms. However, I was delighted by excessive displays of gratuitous butchery.</p>
+							</li>
+							<li><h3>Lars0n_yee</h3>
+								<h6>on March 16, 2016</h6>
+								<p>Place is so rank, I'm steering clear. Heard it was haunted too.</p>
+							</li>
+							<li><h3>elmstr33t13</h3>
+								<h6>on May 13, 2016</h6>
+								<p>Not worth your time.</p>
+							</li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<h2>Bets</h2>
+					<div class="price_by_night">
+						<h3>All In</h3>
+					</div>
+					<div class="information">
+						<div class="max_guest">
+							<p>2+ Guests</p>
+						</div>
+						<div class="number_rooms">
+							<p>1 Room</p>
+						</div>
+						<div class="number_bathrooms">
+							<p>N/A</p>
+						</div>
+					</div>
+					<div class="user">
+						<p><strong>Owner</strong>: <a href="https://twitter.com/@dogonthecircuit">Justin Marsh</a></p>
+					</div>
+					<div class="description">
+						<p>The name of the game is Texas Holdem.</p>
+					</div>
+					<div class="amenities">
+						<ul><h2>Amenities</h2>
+							<li class="icon_wifi">Wifi</li>
+							<li class="icon_tv">Television</li>
+							<li class="icon_pets">Pet Friendly</li>
+						</ul>
+					</div>
+					<div class="reviews">
+						<h2>Reviews</h2>
+						<ul>
+							<li><h3>YOG</h3>
+								<h6>on November 3, 2016</h6>
+								<p>This guy's real good. I lost all my money.</p>
+							</li>
+						</ul>
+					</div>
+				</article>
+			</section>
+		</div>
+		<footer>
+			<p>Holberton School</p>
+		</footer>
+	</body>
 </html>
