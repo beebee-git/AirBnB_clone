@@ -1,22 +1,25 @@
 #!/usr/bin/python3
-"""Importing the needed framework"""
+"""Starts Flask web app
+Routes:
+    / - display "Hello HBNB!"
+    /hbnb - display "HBNB"
+"""
 from flask import Flask
-
 
 app = Flask(__name__)
 
 
-@app.route("/", strict_slashes=False)
-def hello():
-    """Function that returns a simple string"""
+@app.route('/', strict_slashes=False)
+def hbnb_route():
+    """prints Hello HBNB"""
     return "Hello HBNB!"
 
 
-@app.route("/hbnb", strict_slashes=False)
-def hello_hbnb():
-    """Function that returns HBNB strint"""
+@app.route('/hbnb', strict_slashes=False)
+def hbnb():
+    """prints HBNB"""
     return "HBNB"
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
