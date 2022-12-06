@@ -1,84 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta name="author" content="Ian Liu-Johnston">
+		<title>AirBnB clone</title>
 
-		<title>HTML Exercises</title>
+		<link rel="shortcut icon" href="images/icon.ico" >
 
-		<link rel="stylesheet" href="styles/4-common.css">
-		<link rel="stylesheet" href="styles/3-header.css">
-		<link rel="stylesheet" href="styles/3-footer.css">
-		<link rel="stylesheet" href="styles/6-filters.css">
-		<link rel="stylesheet" href="styles/7-places.css">
-		<link rel="icon" href="images/icon.png">
+		<link rel="stylesheet" href="styles/4-common.css"/>
+		<link rel="stylesheet" href="styles/3-header.css"/>
+		<link rel="stylesheet" href="styles/3-footer.css"/>
+		<link rel="stylesheet" href="styles/6-filters.css"/>
+		<link rel="stylesheet" href="styles/7-places.css"/>
 	</head>
-	<body>
+    <body>
 		<header>
+			<div id="header_logo"></div>
 		</header>
 		<div class="container">
 			<section class="filters">
+				<button>Search</button>
 				<div class="locations">
 					<h3>States</h3>
-					<h4><em>may refer to</em></h4>
-					<div class="popover">
-						<ul>
-							<ul><h2>Constituant</h2>
-								<li>California</li>
-								<li>New York</li>
-								<li>Arizona</li>
-								<li>Washington</li>
-								<li>New Mexico</li>
-							</ul>
-							<ul><h2>Mental</h2>
-								<li>Enviggorated</li>	
-								<li>Psychotic</li>	
-								<li>Elated</li>	
-								<li>Reclusive</li>	
-								<li>Aggravated</li>	
-								<li>Altered</li>
-							</ul>
-							<ul><h2>Quantum</h2>
-								<li>Mixed</li>
-								<li>Pure</li>
-								<li>Coherent</li>
-								<li>Vacuum</li>
-								<li>Superposition</li>
-								<li>Entangled</li>
-							</ul>
-						</ul>	
-					</div>
+					<h4>California, Arizona...</h4>
+					<ul class="popover">
+						<li><h2>Arizona</h2>
+							<ul>
+								<li><h4>Page</h4></li>
+								<li><h4>Page2</h4></li>
+							</ul></li>
+						<li><h2>California</h2>
+							<ul>
+								<li><h4>San Francisco</h4></li>
+								<li><h4>Los Altos</h4></li>
+							</ul></li>
+					</ul>
 				</div>
 				<div class="amenities">
 					<h3>Amenities</h3>
-					<h4><em>My spoon is too big.</em></h4>
-					<div class="popover">
-						<ul>
-							<li>Cereal</li>
-							<li>Bread</li>
-							<li>Low Crime Rate</li>
-							<li>Marbles</li>
-							<li>Clean Air</li>
-							<li>Crops</li>
-							<li>IOT</li>
-						</ul>
-					</div>
+					<h4>Internet, Kitchen...</h4>
+					<ul class="popover">
+						<li><h4>Internet</h4></li>
+						<li><h4>TV</h4></li>
+						<li><h4>Kitchen</h4></li>
+						<li><h4>Iron</h4></li>
+					</ul>
 				</div>
-				<button>Search</button>
+
 			</section>
 			<section class="places">
 				<h1>Places</h1>
 				<article>
-					<h2>Foil-Covered Yurt</h2>
+					<h2>My home</h2>
 				</article>
 				<article>
-					<h2>Abandoned Battleship</h2>
+					<h2>Tiny house</h2>
 				</article>
 				<article>
-					<h2>Dungeon</h2>
-				</article>
-				<article>
-					<h2>Bets</h2>
+					<h2>A suite</h2>
 				</article>
 			</section>
 		</div>

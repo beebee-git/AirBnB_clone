@@ -1,100 +1,41 @@
 #!/usr/bin/python3
-"""Defines unittests for models/state.py.
-
-Unittest classes:
-    TestState_instantiation
-    TestState_save
-    TestState_to_dict
-"""
+"""Defines unnittests for state class"""
 import os
 import models
+import MySQLdb
 import unittest
 from datetime import datetime
-from time import sleep
+from models.base_model import Base, BaseModel
+from models.city import City
 from models.state import State
+from models.engine.db_storage import DBStorage
+from models.engine.file_storage import FileStorage
+from sqlalchemy.exc import OperationalError
+from sqlalchemy.orm import sessionmaker
 
 
-class TestState_instantiation(unittest.TestCase):
-    """Unittests for testing instantiation of the State class."""
-
-    def test_no_args_instantiates(self):
-        self.assertEqual(State, type(State()))
-
-    def test_new_instance_stored_in_objects(self):
-        self.assertIn(State(), models.storage.all().values())
-
-    def test_id_is_public_str(self):
-        self.assertEqual(str, type(State().id))
-
-    def test_created_at_is_public_datetime(self):
-        self.assertEqual(datetime, type(State().created_at))
-
-    def test_updated_at_is_public_datetime(self):
-        self.assertEqual(datetime, type(State().updated_at))
-
-    def test_name_is_public_class_attribute(self):
-        st = State()
-        self.assertEqual(str, type(State.name))
-        self.assertIn("name", dir(st))
-        self.assertNotIn("name", st.__dict__)
-
-    def test_two_states_unique_ids(self):
-        st1 = State()
-        st2 = State()
-        self.assertNotEqual(st1.id, st2.id)
-
-    def test_two_states_different_created_at(self):
-        st1 = State()
-        sleep(0.05)
-        st2 = State()
-        self.assertLess(st1.created_at, st2.created_at)
-
-    def test_two_states_different_updated_at(self):
-        st1 = State()
-        sleep(0.05)
-        st2 = State()
-        self.assertLess(st1.updated_at, st2.updated_at)
-
-    def test_str_representation(self):
-        dt = datetime.today()
-        dt_repr = repr(dt)
-        st = State()
-        st.id = "123456"
-        st.created_at = st.updated_at = dt
-        ststr = st.__str__()
-        self.assertIn("[State] (123456)", ststr)
-        self.assertIn("'id': '123456'", ststr)
-        self.assertIn("'created_at': " + dt_repr, ststr)
-        self.assertIn("'updated_at': " + dt_repr, ststr)
-
-    def test_args_unused(self):
-        st = State(None)
-        self.assertNotIn(None, st.__dict__.values())
-
-    def test_instantiation_with_kwargs(self):
-        dt = datetime.today()
-        dt_iso = dt.isoformat()
-        st = State(id="345", created_at=dt_iso, updated_at=dt_iso)
-        self.assertEqual(st.id, "345")
-        self.assertEqual(st.created_at, dt)
-        self.assertEqual(st.updated_at, dt)
-
-    def test_instantiation_with_None_kwargs(self):
-        with self.assertRaises(TypeError):
-            State(id=None, created_at=None, updated_at=None)
-
-
-class TestState_save(unittest.TestCase):
-    """Unittests for testing save method of the State class."""
+class TestState(unittest.TestCase):
+    """Unittests for testing the State class."""
 
     @classmethod
-    def setUp(self):
+    def setUpClass(cls):
         try:
             os.rename("file.json", "tmp")
         except IOError:
             pass
+        FileStorage._FileStorage__objects = {}
+        cls.filestorage = FileStorage()
+        cls.state = State(name="California")
+        cls.city = City(name="San Jose", state_id=cls.state.id)
 
-    def tearDown(self):
+        if type(models.storage) == DBStorage:
+            cls.dbstorage = DBStorage()
+            Base.metadata.create_all(cls.dbstorage._DBStorage__engine)
+            Session = sessionmaker(bind=cls.dbstorage._DBStorage__engine)
+            cls.dbstorage._DBStorage__session = Session()
+
+    @classmethod
+    def tearDownClass(cls):
         try:
             os.remove("file.json")
         except IOError:
@@ -103,86 +44,103 @@ class TestState_save(unittest.TestCase):
             os.rename("tmp", "file.json")
         except IOError:
             pass
+        del cls.state
+        del cls.city
+        del cls.filestorage
+        if type(models.storage) == DBStorage:
+            cls.dbstorage._DBStorage__session.close()
+            del cls.dbstorage
 
-    def test_one_save(self):
+    def test_attributes(self):
         st = State()
-        sleep(0.05)
-        first_updated_at = st.updated_at
-        st.save()
-        self.assertLess(first_updated_at, st.updated_at)
+        self.assertEqual(str, type(st.id))
+        self.assertEqual(datetime, type(st.created_at))
+        self.assertEqual(datetime, type(st.updated_at))
+        self.assertTrue(hasattr(st, "name"))
 
-    def test_two_saves(self):
-        st = State()
-        sleep(0.05)
-        first_updated_at = st.updated_at
-        st.save()
-        second_updated_at = st.updated_at
-        self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.05)
-        st.save()
-        self.assertLess(second_updated_at, st.updated_at)
+    @unittest.skipIf(type(models.storage) == FileStorage,
+                     "Testing FileStorage")
+    def test_nullable_attributes(self):
+        with self.assertRaises(OperationalError):
+            self.dbstorage._DBStorage__session.add(State())
+            self.dbstorage._DBStorage__session.commit()
+        self.dbstorage._DBStorage__session.rollback()
 
-    def test_save_with_arg(self):
-        st = State()
-        with self.assertRaises(TypeError):
-            st.save(None)
+    @unittest.skipIf(type(models.storage) == DBStorage,
+                     "Testing DBStorage")
+    def test_cities(self):
+        key = "{}.{}".format(type(self.city).__name__, self.city.id)
+        self.filestorage._FileStorage__objects[key] = self.city
+        cities = self.state.cities
+        self.assertTrue(list, type(cities))
+        self.assertIn(self.city, cities)
 
-    def test_save_updates_file(self):
+    def test_is_subclass(self):
+        self.assertTrue(issubclass(State, BaseModel))
+
+    def test_init(self):
+        self.assertIsInstance(self.state, State)
+
+    def test_two_models_are_unique(self):
         st = State()
-        st.save()
-        stid = "State." + st.id
+        self.assertNotEqual(self.state.id, st.id)
+        self.assertLess(self.state.created_at, st.created_at)
+        self.assertLess(self.state.updated_at, st.updated_at)
+
+    def test_init_args_kwargs(self):
+        dt = datetime.utcnow()
+        st = State("1", id="5", created_at=dt.isoformat())
+        self.assertEqual(st.id, "5")
+        self.assertEqual(st.created_at, dt)
+
+    def test_str(self):
+        s = self.state.__str__()
+        self.assertIn("[State] ({})".format(self.state.id), s)
+        self.assertIn("'id': '{}'".format(self.state.id), s)
+        self.assertIn("'created_at': {}".format(
+            repr(self.state.created_at)), s)
+        self.assertIn("'updated_at': {}".format(
+            repr(self.state.updated_at)), s)
+        self.assertIn("'name': '{}'".format(self.state.name), s)
+
+    @unittest.skipIf(type(models.storage) == DBStorage,
+                     "Testing DBStorage")
+    def test_save_filestorage(self):
+        old = self.state.updated_at
+        self.state.save()
+        self.assertLess(old, self.state.updated_at)
         with open("file.json", "r") as f:
-            self.assertIn(stid, f.read())
+            self.assertIn("State." + self.state.id, f.read())
 
+    @unittest.skipIf(type(models.storage) == FileStorage,
+                     "Testing FileStorage")
+    def test_save_dbstorage(self):
+        old = self.state.updated_at
+        self.state.save()
+        self.assertLess(old, self.state.updated_at)
+        db = MySQLdb.connect(user="hbnb_test",
+                             passwd="hbnb_test_pwd",
+                             db="hbnb_test_db")
+        cursor = db.cursor()
+        cursor.execute("SELECT * \
+                          FROM `states` \
+                         WHERE BINARY name = '{}'".
+                       format(self.state.name))
+        query = cursor.fetchall()
+        self.assertEqual(1, len(query))
+        self.assertEqual(self.state.id, query[0][0])
+        cursor.close()
 
-class TestState_to_dict(unittest.TestCase):
-    """Unittests for testing to_dict method of the State class."""
-
-    def test_to_dict_type(self):
-        self.assertTrue(dict, type(State().to_dict()))
-
-    def test_to_dict_contains_correct_keys(self):
-        st = State()
-        self.assertIn("id", st.to_dict())
-        self.assertIn("created_at", st.to_dict())
-        self.assertIn("updated_at", st.to_dict())
-        self.assertIn("__class__", st.to_dict())
-
-    def test_to_dict_contains_added_attributes(self):
-        st = State()
-        st.middle_name = "Holberton"
-        st.my_number = 98
-        self.assertEqual("Holberton", st.middle_name)
-        self.assertIn("my_number", st.to_dict())
-
-    def test_to_dict_datetime_attributes_are_strs(self):
-        st = State()
-        st_dict = st.to_dict()
-        self.assertEqual(str, type(st_dict["id"]))
-        self.assertEqual(str, type(st_dict["created_at"]))
-        self.assertEqual(str, type(st_dict["updated_at"]))
-
-    def test_to_dict_output(self):
-        dt = datetime.today()
-        st = State()
-        st.id = "123456"
-        st.created_at = st.updated_at = dt
-        tdict = {
-            'id': '123456',
-            '__class__': 'State',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
-        }
-        self.assertDictEqual(st.to_dict(), tdict)
-
-    def test_contrast_to_dict_dunder_dict(self):
-        st = State()
-        self.assertNotEqual(st.to_dict(), st.__dict__)
-
-    def test_to_dict_with_arg(self):
-        st = State()
-        with self.assertRaises(TypeError):
-            st.to_dict(None)
+    def test_to_dict(self):
+        state_dict = self.state.to_dict()
+        self.assertEqual(dict, type(state_dict))
+        self.assertEqual(self.state.id, state_dict["id"])
+        self.assertEqual("State", state_dict["__class__"])
+        self.assertEqual(self.state.created_at.isoformat(),
+                         state_dict["created_at"])
+        self.assertEqual(self.state.updated_at.isoformat(),
+                         state_dict["updated_at"])
+        self.assertEqual(self.state.name, state_dict["name"])
 
 
 if __name__ == "__main__":
